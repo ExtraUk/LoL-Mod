@@ -1,3 +1,5 @@
 {
-  "item.leaguecraft.silver-ingot": "Silver Ingot"
+  "item.leaguecraft.silver-ingot": "Silver Ingot",
+
+  "itemGroup.leaguecraftTab": "LeagueCraft"
 }
