@@ -12,10 +12,10 @@ public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, LeagueCraft.MOD_ID);
 
-    public static final RegistryObject<Item> LEAGUE_ICON = ITEMS.register("league-icon",
+    public static final RegistryObject<Item> LEAGUE_ICON = ITEMS.register("league_icon",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver-ingot",
+    public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot",
             () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
 
 

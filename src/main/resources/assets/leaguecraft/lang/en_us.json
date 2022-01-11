@@ -1,5 +1,9 @@
 {
-  "item.leaguecraft.silver-ingot": "Silver Ingot",
+  "item.leaguecraft.silver_ingot": "Silver Ingot",
+
+
+  "block.leaguecraft.silver_ore": "Silver Ore",
+
 
   "itemGroup.leaguecraftTab": "LeagueCraft"
 }
