@@ -18,6 +18,12 @@ public class ModItems {
     public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot",
             () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
 
+    public static final RegistryObject<Item> BOLT = ITEMS.register("bolt",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
+    public static final RegistryObject<Item> SILVER_BOLT = ITEMS.register("silver_bolt",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
