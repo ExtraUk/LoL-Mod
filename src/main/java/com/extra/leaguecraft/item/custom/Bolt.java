@@ -4,10 +4,7 @@ import com.extra.leaguecraft.item.ModItems;
 import net.minecraft.command.arguments.NBTTagArgument;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.INBTType;
@@ -25,7 +22,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Bolt extends Item {
+public class Bolt extends ArrowItem {
 
     public Bolt(Properties properties) {
         super(properties);
@@ -38,7 +35,6 @@ public class Bolt extends Item {
             if (player.inventory.getStackInSlot(j).getItem().equals(ModItems.MAGAZINE.get().getItem())) {
                 for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                     if (player.inventory.getStackInSlot(i).getItem().equals(ModItems.MAGAZINE.get().getItem()) && player.inventory.getStackInSlot(i).isDamaged()) {
-                        System.out.println("Cuack");
                         player.inventory.decrStackSize(player.inventory.getSlotFor(player.getHeldItem(hand)), 1);
                         player.inventory.getStackInSlot(i).setDamage(player.inventory.getStackInSlot(i).getDamage()-1);
                         loadBolt(player, i);

@@ -3,7 +3,9 @@ package com.extra.leaguecraft.item;
 import com.extra.leaguecraft.LeagueCraft;
 import com.extra.leaguecraft.item.custom.Bolt;
 import com.extra.leaguecraft.item.custom.Magazine;
+import com.extra.leaguecraft.item.custom.Repeater;
 import com.extra.leaguecraft.item.custom.SilverBolt;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,6 +31,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> MAGAZINE = ITEMS.register("magazine",
             () -> new Magazine(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(64)));
+
+    public static final RegistryObject<Item> REPEATER = ITEMS.register("repeater",
+            () -> new Repeater(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(1024)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

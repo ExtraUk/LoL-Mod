@@ -1,6 +1,7 @@
 package com.extra.leaguecraft;
 
 import com.extra.leaguecraft.block.ModBlocks;
+import com.extra.leaguecraft.effect.ModEffects;
 import com.extra.leaguecraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -36,6 +37,8 @@ public class LeagueCraft
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModEffects.EFFECTS.register(eventBus);
+        ModEffects.POTIONS.register(eventBus);
 
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading

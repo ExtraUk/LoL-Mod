@@ -2,6 +2,7 @@ package com.extra.leaguecraft.item.custom;
 
 import com.extra.leaguecraft.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -9,7 +10,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class SilverBolt extends Item{
+public class SilverBolt extends ArrowItem {
 
     public SilverBolt(Item.Properties properties) {
         super(properties);
