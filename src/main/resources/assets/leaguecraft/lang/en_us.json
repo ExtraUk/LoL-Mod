@@ -4,9 +4,19 @@
   "item.leaguecraft.silver_bolt": "Silver Bolt",
   "item.leaguecraft.magazine": "Magazine",
   "item.leaguecraft.repeater": "Repeater",
+  "item.leaguecraft.shimmer_vial": "Shimmer Vial",
+  "item.leaguecraft.turbo_chemtank_helmet": "Turbo Chemtank Helmet",
+  "item.leaguecraft.turbo_chemtank_chest": "Turbo Chemtank Chest",
+  "item.leaguecraft.turbo_chemtank_legs": "Turbo Chemtank Legs",
+  "item.leaguecraft.turbo_chemtank_boots": "Turbo Chemtank Boots",
 
   "block.leaguecraft.silver_ore": "Silver Ore",
+  "block.leaguecraft.shimmer_flower": "Shimmer Flower",
 
+  "effect.leaguecraft.shimmer": "Shimmer",
 
-  "itemGroup.leaguecraftTab": "LeagueCraft"
+  "itemGroup.leaguecraftTab": "LeagueCraft",
+
+  "key.category.leaguecraft." : "LeagueCraft",
+  "key.leaguecraft.activate_key" : "Activate Key"
 }

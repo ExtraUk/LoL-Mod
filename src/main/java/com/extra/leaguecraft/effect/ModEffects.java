@@ -17,4 +17,10 @@ public class ModEffects{
 
     public static final RegistryObject<Potion> DAMAGE_UNDEAD_POTION = POTIONS.register("damage_undead",
             () -> new Potion(new EffectInstance(DAMAGE_UNDEAD.get(), 0, 0)));
+
+    public static final RegistryObject<Effect> SHIMMER = EFFECTS.register("shimmer",
+            () -> new ShimmerEffect());
+
+    public static final RegistryObject<Potion> SHIMMER_POTION = POTIONS.register("shimmer",
+            () -> new Potion(new EffectInstance(SHIMMER.get(), 0, 0)));
 }
