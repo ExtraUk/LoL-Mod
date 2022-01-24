@@ -1,6 +1,7 @@
 package com.extra.leaguecraft.item;
 
 import com.extra.leaguecraft.LeagueCraft;
+import com.extra.leaguecraft.entity.ModEntityTypes;
 import com.extra.leaguecraft.item.custom.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -47,8 +48,24 @@ public class ModItems {
     public static final RegistryObject<Item> TURBO_CHEMTANK_BOOTS = ITEMS.register("turbo_chemtank_boots",
             () -> new ModArmorItem(ModArmorMaterial.TURBO_CHEMTANK, EquipmentSlotType.FEET, new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(700)));
 
-    public static final RegistryObject<Item> WORLD_RUNE = ITEMS.register("world_rune",
-            () -> new WorldRune(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
+    public static final RegistryObject<Item> WORLD_RUNE_EARTH = ITEMS.register("world_rune_earth",
+            () -> new WorldRuneEarth(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
+
+    public static final RegistryObject<Item> WORLD_RUNE_FIRE = ITEMS.register("world_rune_fire",
+            () -> new WorldRuneFire(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
+
+    public static final RegistryObject<ModSpawnEggItem> BRACKERN_SPAWN_EGG = ITEMS.register("brackern_spawn_egg",
+            () -> new ModSpawnEggItem(ModEntityTypes.BRACKERN, 0x9b59b6, 0x3498db,
+                    new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
+    public static final RegistryObject<Item> HEXTECH_CRYSTAL = ITEMS.register("hextech_crystal",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(2048)));
+
+    public static final RegistryObject<Item> HEXTECH_SWORD = ITEMS.register("hextech_sword",
+            () -> new HextechSword());
+
+    public static final RegistryObject<Item> HEXTECH_SWORD_BROKEN = ITEMS.register("hextech_sword_broken",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

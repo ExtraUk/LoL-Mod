@@ -1,14 +1,21 @@
 package com.extra.leaguecraft;
 
 import com.extra.leaguecraft.block.ModBlocks;
+import com.extra.leaguecraft.container.ModContainers;
 import com.extra.leaguecraft.effect.ModEffects;
+import com.extra.leaguecraft.entity.ModEntityTypes;
+import com.extra.leaguecraft.entity.render.BrackernRenderer;
+import com.extra.leaguecraft.event.ClientEventHandler;
 import com.extra.leaguecraft.event.EntityHurtHandler;
 import com.extra.leaguecraft.event.KeyInit;
 import com.extra.leaguecraft.item.ModItems;
 import com.extra.leaguecraft.network.ModNetwork;
 import com.extra.leaguecraft.recipes.TurboChemtankChestRecipe;
+import com.extra.leaguecraft.screen.HextechChargerScreen;
+import com.extra.leaguecraft.tileentity.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -18,20 +25,17 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import javax.swing.text.html.parser.Entity;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(LeagueCraft.MOD_ID)
@@ -55,6 +59,9 @@ public class LeagueCraft
         ModEffects.POTIONS.register(eventBus);
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModTileEntities.register(eventBus);
+        ModContainers.register(eventBus);
+        ModEntityTypes.register(eventBus);
 
         RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
@@ -70,6 +77,7 @@ public class LeagueCraft
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new EntityHurtHandler());
+        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -84,6 +92,9 @@ public class LeagueCraft
         event.enqueueWork( () -> {
             RenderTypeLookup.setRenderLayer(ModBlocks.SHIMMER_FLOWER.get(), RenderType.getCutout());
         });
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRACKERN.get(), BrackernRenderer::new);
+        ScreenManager.registerFactory(ModContainers.HEXTECH_CHARGER_CONTAINER.get(), HextechChargerScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

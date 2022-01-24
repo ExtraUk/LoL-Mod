@@ -9,14 +9,25 @@
   "item.leaguecraft.turbo_chemtank_chest": "Turbo Chemtank Chest",
   "item.leaguecraft.turbo_chemtank_legs": "Turbo Chemtank Legs",
   "item.leaguecraft.turbo_chemtank_boots": "Turbo Chemtank Boots",
+  "item.leaguecraft.world_rune_earth": "Earth World Rune",
+  "item.leaguecraft.world_rune_fire": "Fire World Rune",
+  "item.leaguecraft.brackern_spawn_egg": "Brackern Spawn Egg",
+  "item.leaguecraft.hextech_crystal": "Hextech Crystal",
+  "item.leaguecraft.hextech_sword": "Hextech Sword",
+  "item.leaguecraft.hextech_sword_broken": "Uncharged Hextech Sword",
 
   "block.leaguecraft.silver_ore": "Silver Ore",
   "block.leaguecraft.shimmer_flower": "Shimmer Flower",
+  "block.leaguecraft.hextech_charger": "Hextech Charger",
+
+  "entity.leaguecraft.brackern_entity": "Brackern",
 
   "effect.leaguecraft.shimmer": "Shimmer",
 
   "itemGroup.leaguecraftTab": "LeagueCraft",
 
   "key.category.leaguecraft." : "LeagueCraft",
-  "key.leaguecraft.activate_key" : "Activate Key"
+  "key.leaguecraft.activate_key" : "Activate Key",
+
+  "screen.leaguecraft.hextech_charger" : "Hextech Charger"
 }

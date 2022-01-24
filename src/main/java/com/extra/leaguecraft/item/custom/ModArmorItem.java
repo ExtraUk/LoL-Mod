@@ -79,7 +79,7 @@ public class ModArmorItem extends ArmorItem {
             if(player.inventory.armorItemInSlot(2).getTag().getBoolean("active")){
                 if(player.inventory.armorItemInSlot(2).getTag().getInt("shimmer_load") > 0){
                     if(flag) {
-                        player.addPotionEffect(new EffectInstance(ModEffects.SHIMMER.get(), 60, 3));
+                        player.addPotionEffect(new EffectInstance(ModEffects.SHIMMER.get(), 20, 3));
                     }
                     player.inventory.armorItemInSlot(2).getTag().putInt("shimmer_load", player.inventory.armorItemInSlot(2).getTag().getInt("shimmer_load") -1);
                 }

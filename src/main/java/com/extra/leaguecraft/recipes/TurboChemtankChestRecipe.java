@@ -88,7 +88,12 @@ public class TurboChemtankChestRecipe implements ICraftingRecipe {
         }
 
         ItemStack chestplateToRetrun = chest.copy();
-        chestplateToRetrun.getOrCreateTag().putInt("shimmer_load", load + vialCount * 2400);
+        if(load >= 16800){
+            chestplateToRetrun.getOrCreateTag().putInt("shimmer_load", 19200);
+        }
+        else {
+            chestplateToRetrun.getOrCreateTag().putInt("shimmer_load", load + vialCount * 2400);
+        }
         return chestplateToRetrun;
     }
 

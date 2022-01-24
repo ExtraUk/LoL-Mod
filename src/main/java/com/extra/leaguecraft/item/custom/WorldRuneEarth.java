@@ -16,9 +16,9 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class WorldRune extends Item {
+public class WorldRuneEarth extends Item {
 
-    public WorldRune(Properties properties) {
+    public WorldRuneEarth(Properties properties) {
         super(properties.isImmuneToFire());
     }
 
@@ -44,17 +44,13 @@ public class WorldRune extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        System.out.println(1);
         if (!worldIn.isRemote()) {
-            System.out.println(2);
             RayTraceResult result = rayTrace(worldIn, playerIn);
             if (result instanceof BlockRayTraceResult) {
-                System.out.println(3);
                 BlockPos pos = ((BlockRayTraceResult) result).getPos();
                 Block block = worldIn.getBlockState(pos).getBlock();
 
                 if (block != Blocks.AIR) {
-                    System.out.println(4);
                     if (worldIn instanceof ServerWorld) {
                         System.out.println(5);
                         worldIn.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 15, Explosion.Mode.DESTROY);
