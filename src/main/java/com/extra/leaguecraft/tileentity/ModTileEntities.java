@@ -17,6 +17,10 @@ public class ModTileEntities {
             () -> TileEntityType.Builder.create(
                     HextechChargerTile::new, ModBlocks.HEXTECH_CHARGRER.get()).build(null));
 
+    public static RegistryObject<TileEntityType<HextechSynthesizerTile>> HEXTECH_SYNTHESIZER_TILE = TILE_ENTITIES.register("hextech_synthesizer_tile",
+            () -> TileEntityType.Builder.create(
+                    HextechSynthesizerTile::new, ModBlocks.HEXTECH_SYNTHESIZER.get()).build(null));
+
     public static void register(IEventBus eventBus){
         TILE_ENTITIES.register(eventBus);
     }

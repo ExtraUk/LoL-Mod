@@ -1,6 +1,7 @@
 package com.extra.leaguecraft.world;
 
 import com.extra.leaguecraft.LeagueCraft;
+import com.extra.leaguecraft.world.gen.ModEntityGeneration;
 import com.extra.leaguecraft.world.gen.ModFlowerGeneration;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,5 +13,6 @@ public class ModWorldEvents {
     @SubscribeEvent
     public static void biomeLoadingEvent(final BiomeLoadingEvent event){
         ModFlowerGeneration.generateFlowers(event);
+        ModEntityGeneration.onEntitySpawn(event);
     }
 }

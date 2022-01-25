@@ -1,6 +1,7 @@
 package com.extra.leaguecraft.item.custom;
 
 import com.extra.leaguecraft.effect.ModEffects;
+import com.extra.leaguecraft.entity.custom.ModArrowEntity;
 import com.extra.leaguecraft.item.ModItems;
 import com.google.common.collect.Lists;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -20,7 +21,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -31,7 +31,6 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.extra.leaguecraft.item.custom;
+package com.extra.leaguecraft.entity.custom;
 
 import com.extra.leaguecraft.effect.ModEffects;
 import com.google.common.collect.Sets;

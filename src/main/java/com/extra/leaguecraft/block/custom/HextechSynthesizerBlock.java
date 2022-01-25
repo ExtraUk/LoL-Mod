@@ -1,19 +1,18 @@
 package com.extra.leaguecraft.block.custom;
 
 import com.extra.leaguecraft.container.HextechChargerContainer;
+import com.extra.leaguecraft.container.HextechSynthesizerContainer;
 import com.extra.leaguecraft.tileentity.HextechChargerTile;
+import com.extra.leaguecraft.tileentity.HextechSynthesizerTile;
 import com.extra.leaguecraft.tileentity.ModTileEntities;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -28,20 +27,20 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class HextechChargerBlock extends Block {
+public class HextechSynthesizerBlock extends Block {
 
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
-    public HextechChargerBlock(Properties properties) {
+    public HextechSynthesizerBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(ACTIVE, false));
+        //this.setDefaultState(this.getDefaultState().with(ACTIVE, false));
     }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
         if(!world.isRemote){
             TileEntity tileEntity = world.getTileEntity(pos);
-            if(tileEntity instanceof HextechChargerTile){
+            if(tileEntity instanceof HextechSynthesizerTile){
                 INamedContainerProvider containerProvider = createContainerProvider(world, pos);
 
                 NetworkHooks.openGui(((ServerPlayerEntity) player), containerProvider, tileEntity.getPos());
@@ -58,13 +57,13 @@ public class HextechChargerBlock extends Block {
         return new INamedContainerProvider() {
             @Override
             public ITextComponent getDisplayName() {
-                return new TranslationTextComponent("screen.leaguecraft.hextech_charger");
+                return new TranslationTextComponent("screen.leaguecraft.hextech_synthesizer");
             }
 
             @Nullable
             @Override
             public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity player) {
-                return new HextechChargerContainer(i, world, pos, playerInventory, player);
+                return new HextechSynthesizerContainer(i, world, pos, playerInventory, player);
             }
         };
     }
@@ -77,7 +76,7 @@ public class HextechChargerBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return ModTileEntities.HEXTECH_CHARGER_TILE.get().create();
+        return ModTileEntities.HEXTECH_SYNTHESIZER_TILE.get().create();
     }
 
     @Override

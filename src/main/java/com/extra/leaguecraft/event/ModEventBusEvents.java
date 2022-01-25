@@ -8,8 +8,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
 @Mod.EventBusSubscriber(modid = LeagueCraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
@@ -22,6 +25,11 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void onRegisterEntities(RegistryEvent.Register<EntityType<?>> event) {
         ModSpawnEggItem.initSpawnEggs();
+    }
+
+    @SubscribeEvent
+    public static void gatherDataEvent(GatherDataEvent event){
+
     }
 
 }

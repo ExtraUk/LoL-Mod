@@ -2,9 +2,11 @@ package com.extra.leaguecraft.block;
 
 import com.extra.leaguecraft.LeagueCraft;
 import com.extra.leaguecraft.block.custom.HextechChargerBlock;
+import com.extra.leaguecraft.block.custom.HextechSynthesizerBlock;
 import com.extra.leaguecraft.effect.ModEffects;
 import com.extra.leaguecraft.item.ModItemGroup;
 import com.extra.leaguecraft.item.ModItems;
+import com.extra.leaguecraft.tileentity.HextechSynthesizerTile;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -32,7 +34,10 @@ public class ModBlocks {
             () -> new FlowerBlock(Effects.REGENERATION, 4, AbstractBlock.Properties.from(Blocks.DANDELION).setLightLevel(value -> 2)));
 
     public static final RegistryObject<Block> HEXTECH_CHARGRER = registerBlock("hextech_charger",
-            () -> new HextechChargerBlock(AbstractBlock.Properties.create(Material.IRON)));
+            () -> new HextechChargerBlock(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(2f)));
+
+    public static final RegistryObject<Block> HEXTECH_SYNTHESIZER = registerBlock("hextech_synthesizer",
+            () -> new HextechSynthesizerBlock(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(2f)));
 
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){

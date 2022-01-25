@@ -21,6 +21,12 @@ public class ModContainers {
                 return new HextechChargerContainer(windowId, world, pos, inv, inv.player);
             })));
 
+    public static final RegistryObject<ContainerType<HextechSynthesizerContainer>> HEXTECH_SYNTHESIZER_CONTAINER = CONTAINERS.register("hextech_synthesizer_container",
+            () -> IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                World world = inv.player.getEntityWorld();
+                return new HextechSynthesizerContainer(windowId, world, pos, inv, inv.player);
+            })));
 
     public static void register(IEventBus eventBus){
         CONTAINERS.register(eventBus);

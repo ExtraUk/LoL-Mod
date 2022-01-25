@@ -1,10 +1,12 @@
 package com.extra.leaguecraft.tileentity;
 
+import com.extra.leaguecraft.block.custom.HextechChargerBlock;
 import com.extra.leaguecraft.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.Property;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -18,7 +20,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class HextechChargerTile extends TileEntity implements ITickableTileEntity {
 
@@ -98,17 +102,27 @@ public class HextechChargerTile extends TileEntity implements ITickableTileEntit
     public void tick() {
         ItemStack fuel = this.itemHandler.getStackInSlot(0);
         ItemStack chargingItem = this.itemHandler.getStackInSlot(1);
-        if(chargingItem.getItem() == ModItems.HEXTECH_SWORD_BROKEN.get()){
-            ItemStack stack = ModItems.HEXTECH_SWORD.get().getDefaultInstance();
-            stack.setDamage(stack.getItem().getMaxDamage(stack));
-            this.itemHandler.setStackInSlot(1, stack);
-            return;
-        }
         if(!fuel.isEmpty() && !chargingItem.isEmpty()){
+            if(chargingItem.getItem() == ModItems.HEXTECH_SWORD_BROKEN.get() && fuel.getDamage() != fuel.getMaxDamage()){
+                if(!this.world.getBlockState(pos).get(HextechChargerBlock.ACTIVE)) {
+                    this.world.setBlockState(pos, this.world.getBlockState(this.pos).cycleValue(HextechChargerBlock.ACTIVE));
+                }
+                ItemStack stack = ModItems.HEXTECH_SWORD.get().getDefaultInstance();
+                stack.setDamage(stack.getItem().getMaxDamage(stack));
+                this.itemHandler.setStackInSlot(1, stack);
+                return;
+            }
             if(fuel.getDamage() != fuel.getMaxDamage() && chargingItem.getDamage() != 0) {
+                if(!this.world.getBlockState(pos).get(HextechChargerBlock.ACTIVE)) {
+                    this.world.setBlockState(pos, this.world.getBlockState(this.pos).cycleValue(HextechChargerBlock.ACTIVE));
+                }
                 this.itemHandler.getStackInSlot(0).setDamage(fuel.getDamage() + 1);
                 this.itemHandler.getStackInSlot(1).setDamage(chargingItem.getDamage()-1);
+                return;
             }
+        }
+        if(this.world.getBlockState(pos).get(HextechChargerBlock.ACTIVE)) {
+            this.world.setBlockState(pos, this.world.getBlockState(this.pos).cycleValue(HextechChargerBlock.ACTIVE));
         }
     }
 }

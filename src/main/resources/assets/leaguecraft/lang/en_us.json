@@ -15,10 +15,13 @@
   "item.leaguecraft.hextech_crystal": "Hextech Crystal",
   "item.leaguecraft.hextech_sword": "Hextech Sword",
   "item.leaguecraft.hextech_sword_broken": "Uncharged Hextech Sword",
+  "item.leaguecraft.vial": "Vial",
+  "item.leaguecraft.chem_brew": "ChemBrew",
 
   "block.leaguecraft.silver_ore": "Silver Ore",
   "block.leaguecraft.shimmer_flower": "Shimmer Flower",
   "block.leaguecraft.hextech_charger": "Hextech Charger",
+  "block.leaguecraft.hextech_synthesizer": "Hextech Synthesizer",
 
   "entity.leaguecraft.brackern_entity": "Brackern",
 
@@ -29,5 +32,6 @@
   "key.category.leaguecraft." : "LeagueCraft",
   "key.leaguecraft.activate_key" : "Activate Key",
 
-  "screen.leaguecraft.hextech_charger" : "Hextech Charger"
+  "screen.leaguecraft.hextech_charger" : "Hextech Charger",
+  "screen.leaguecraft.hextech_synthesizer" : "Hextech Synthesizer"
 }

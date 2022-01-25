@@ -1,5 +1,6 @@
 {
   "variants": {
-    "": { "model":  "leaguecraft:block/hextech_charger" }
+    "active=false": { "model":  "leaguecraft:block/hextech_charger_off" },
+    "active=true": {"model": "leaguecraft:block/hextech_charger_on"}
   }
 }

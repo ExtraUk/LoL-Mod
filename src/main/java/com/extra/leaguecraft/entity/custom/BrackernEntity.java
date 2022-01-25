@@ -1,20 +1,24 @@
 package com.extra.leaguecraft.entity.custom;
 
+import com.extra.leaguecraft.LeagueCraft;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathFinder;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class BrackernEntity extends SpiderEntity {
@@ -26,7 +30,7 @@ public class BrackernEntity extends SpiderEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 75.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.4D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.0D)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 50.0D);
     }
@@ -34,7 +38,7 @@ public class BrackernEntity extends SpiderEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
+        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.3F));
         this.goalSelector.addGoal(4, new BrackernEntity.AttackGoal(this));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
@@ -126,5 +130,15 @@ public class BrackernEntity extends SpiderEntity {
             float f = this.goalOwner.getBrightness();
             return f >= 0.5F ? false : super.shouldExecute();
         }
+    }
+
+    @Override
+    public boolean isOnLadder() {
+        return false;
+    }
+
+    @Override
+    protected PathNavigator createNavigator(World world) {
+        return new GroundPathNavigator(this, world);
     }
 }

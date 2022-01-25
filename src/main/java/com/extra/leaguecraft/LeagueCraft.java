@@ -12,14 +12,19 @@ import com.extra.leaguecraft.item.ModItems;
 import com.extra.leaguecraft.network.ModNetwork;
 import com.extra.leaguecraft.recipes.TurboChemtankChestRecipe;
 import com.extra.leaguecraft.screen.HextechChargerScreen;
+import com.extra.leaguecraft.screen.HextechSynthesizerScreen;
 import com.extra.leaguecraft.tileentity.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.data.LootTableProvider;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.loot.LootTableIdCondition;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -63,6 +68,8 @@ public class LeagueCraft
         ModContainers.register(eventBus);
         ModEntityTypes.register(eventBus);
 
+
+
         RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -95,6 +102,7 @@ public class LeagueCraft
 
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRACKERN.get(), BrackernRenderer::new);
         ScreenManager.registerFactory(ModContainers.HEXTECH_CHARGER_CONTAINER.get(), HextechChargerScreen::new);
+        ScreenManager.registerFactory(ModContainers.HEXTECH_SYNTHESIZER_CONTAINER.get(), HextechSynthesizerScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

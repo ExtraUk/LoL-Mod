@@ -33,8 +33,11 @@ public class ModItems {
     public static final RegistryObject<Item> REPEATER = ITEMS.register("repeater",
             () -> new Repeater(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(1024)));
 
+    public static final RegistryObject<Item> VIAL = ITEMS.register("vial",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
     public static final RegistryObject<Item> SHIMMER_VIAL = ITEMS.register("shimmer_vial",
-            () -> new ShimmerVial(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(9).food(new Food.Builder().hunger(0).saturation(0).setAlwaysEdible().build())));
+            () -> new ShimmerVial(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(10).food(new Food.Builder().hunger(0).saturation(0).setAlwaysEdible().build())));
 
     public static final RegistryObject<Item> TURBO_CHEMTANK_HELMET = ITEMS.register("turbo_chemtank_helmet",
             () -> new ModArmorItem(ModArmorMaterial.TURBO_CHEMTANK, EquipmentSlotType.HEAD, new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(700)));
@@ -66,6 +69,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> HEXTECH_SWORD_BROKEN = ITEMS.register("hextech_sword_broken",
             () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
+
+    public static final RegistryObject<Item> CHEM_BREW = ITEMS.register("chem_brew",
+            () -> new ChemBrewItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
