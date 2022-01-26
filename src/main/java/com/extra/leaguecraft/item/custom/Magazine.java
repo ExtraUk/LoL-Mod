@@ -59,5 +59,10 @@ public class Magazine extends Item {
         }
     }
 
-
+    @Override
+    public ItemStack getDefaultInstance() {
+        ItemStack toReturn = new ItemStack(this);
+        toReturn.setDamage(this.getMaxDamage(new ItemStack(this)));
+        return toReturn;
+    }
 }

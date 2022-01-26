@@ -1,0 +1,37 @@
+{
+  "item.leaguecraft.silver_ingot": "Lingote de Plata",
+  "item.leaguecraft.bolt": "Virote",
+  "item.leaguecraft.silver_bolt": "Virote de Plata",
+  "item.leaguecraft.magazine": "Cargador",
+  "item.leaguecraft.repeater": "Repetidor",
+  "item.leaguecraft.shimmer_vial": "Frasco de Brillo",
+  "item.leaguecraft.turbo_chemtank_helmet": "Casco de Quimiotanque Turbo",
+  "item.leaguecraft.turbo_chemtank_chest": "Pechera de Quimiotanque Turbo",
+  "item.leaguecraft.turbo_chemtank_legs": "Pantalones de Quimiotanque Turbo",
+  "item.leaguecraft.turbo_chemtank_boots": "Botas de Quimiotanque Turbo",
+  "item.leaguecraft.world_rune_earth": "Runa Geogénica de Tierra",
+  "item.leaguecraft.world_rune_fire": "Runa Geogénica de Fuego",
+  "item.leaguecraft.brackern_spawn_egg": "Huevo de Brackern",
+  "item.leaguecraft.hextech_crystal": "Cristal hextech",
+  "item.leaguecraft.hextech_sword": "Espada Hextech",
+  "item.leaguecraft.hextech_sword_broken": "Espada Hextech Descargada",
+  "item.leaguecraft.vial": "Frasco",
+  "item.leaguecraft.chem_brew": "Mezcla Quimica",
+
+  "block.leaguecraft.silver_ore": "Mena de Plata",
+  "block.leaguecraft.shimmer_flower": "Flor de Brillo",
+  "block.leaguecraft.hextech_charger": "Cargador Hextech",
+  "block.leaguecraft.hextech_synthesizer": "Sintetizador Hextech",
+
+  "entity.leaguecraft.brackern_entity": "Brackern",
+
+  "effect.leaguecraft.shimmer": "Brillo",
+
+  "itemGroup.leaguecraftTab": "LeagueCraft",
+
+  "key.category.leaguecraft." : "LeagueCraft",
+  "key.leaguecraft.activate_key" : "Tecla Activar",
+
+  "screen.leaguecraft.hextech_charger" : "Cargador Hextech",
+  "screen.leaguecraft.hextech_synthesizer" : "Sintetizador Hextech"
+}

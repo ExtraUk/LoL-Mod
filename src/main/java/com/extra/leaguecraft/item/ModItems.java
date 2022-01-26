@@ -7,7 +7,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -71,7 +70,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
 
     public static final RegistryObject<Item> CHEM_BREW = ITEMS.register("chem_brew",
-            () -> new ChemBrewItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
+            () -> new ChemBrewItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(10)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

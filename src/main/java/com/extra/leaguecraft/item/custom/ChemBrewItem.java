@@ -49,23 +49,22 @@ public class ChemBrewItem extends SplashPotionItem {
 
             if(ef1 != null){
                 effect1 = new EffectInstance(ef1, 1200, amp1);
-                PotionUtils.addPotionToItemStack(itemstack, effectToPotion(ef1));
             }
             if(ef2 != null){
                 effect2 = new EffectInstance(ef2, 1200, amp2);
-                PotionUtils.addPotionToItemStack(itemstack, effectToPotion(ef2));
             }
             if(ef3 != null){
                 effect3 = new EffectInstance(ef3, 1200, amp3);
-                PotionUtils.addPotionToItemStack(itemstack, effectToPotion(ef2));
             }
 
             ModPotionEntity potionentity = new ModPotionEntity(worldIn, playerIn, effect1, effect2, effect3);
             potionentity.setItem(itemstack);
             potionentity.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -20.0F, 0.5F, 1.0F);
             worldIn.addEntity(potionentity);
+            playerIn.inventory.decrStackSize(playerIn.inventory.getSlotFor(itemstack), 1);
             return ActionResult.resultConsume(itemstack);
         }
+        playerIn.inventory.decrStackSize(playerIn.inventory.getSlotFor(itemstack), 1);
         return ActionResult.resultSuccess(itemstack);
     }
 
@@ -101,16 +100,25 @@ public class ChemBrewItem extends SplashPotionItem {
         int amp3 = nbt.getInt("amp3");
 
         if(ef1 != null){
-            IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(new EffectInstance(ef1, 1200, amp1).getEffectName());
+            IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(HextechSynthesizerTile.effectToString(ef1) + " " + (amp1+1));
             tooltip.add(iformattabletextcomponent);
         }
         if(ef2 != null){
-            IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(new EffectInstance(ef2, 1200, amp2).getEffectName());
+            IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(HextechSynthesizerTile.effectToString(ef2) + " " + (amp2+1));
             tooltip.add(iformattabletextcomponent);
         }
         if(ef3 != null){
-            IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(new EffectInstance(ef2, 1200, amp3).getEffectName());
+            IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(HextechSynthesizerTile.effectToString(ef3) + " " + (amp3+1));
             tooltip.add(iformattabletextcomponent);
         }
+
+        if(PotionUtils.getEffectsFromStack(stack).size() > 0){
+            PotionUtils.addPotionTooltip(stack, tooltip, 1.0F);
+        }
+    }
+
+    @Override
+    public String getTranslationKey(ItemStack p_77667_1_) {
+        return getTranslationKey();
     }
 }

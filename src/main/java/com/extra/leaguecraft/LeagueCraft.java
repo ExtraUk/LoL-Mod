@@ -10,6 +10,7 @@ import com.extra.leaguecraft.event.EntityHurtHandler;
 import com.extra.leaguecraft.event.KeyInit;
 import com.extra.leaguecraft.item.ModItems;
 import com.extra.leaguecraft.network.ModNetwork;
+import com.extra.leaguecraft.network.ModPacketHandler;
 import com.extra.leaguecraft.recipes.TurboChemtankChestRecipe;
 import com.extra.leaguecraft.screen.HextechChargerScreen;
 import com.extra.leaguecraft.screen.HextechSynthesizerScreen;
@@ -92,6 +93,7 @@ public class LeagueCraft
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        event.enqueueWork(ModPacketHandler::init);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

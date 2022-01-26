@@ -3,6 +3,7 @@ package com.extra.leaguecraft.block;
 import com.extra.leaguecraft.LeagueCraft;
 import com.extra.leaguecraft.block.custom.HextechChargerBlock;
 import com.extra.leaguecraft.block.custom.HextechSynthesizerBlock;
+import com.extra.leaguecraft.block.custom.ShimmerFlowerBlock;
 import com.extra.leaguecraft.effect.ModEffects;
 import com.extra.leaguecraft.item.ModItemGroup;
 import com.extra.leaguecraft.item.ModItems;
@@ -31,7 +32,7 @@ public class ModBlocks {
             .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5f)));
 
     public static final RegistryObject<Block> SHIMMER_FLOWER = registerBlock("shimmer_flower",
-            () -> new FlowerBlock(Effects.REGENERATION, 4, AbstractBlock.Properties.from(Blocks.DANDELION).setLightLevel(value -> 2)));
+            () -> new ShimmerFlowerBlock(Effects.REGENERATION, 4, AbstractBlock.Properties.from(Blocks.BROWN_MUSHROOM).setLightLevel(value -> 2)));
 
     public static final RegistryObject<Block> HEXTECH_CHARGRER = registerBlock("hextech_charger",
             () -> new HextechChargerBlock(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(2f)));

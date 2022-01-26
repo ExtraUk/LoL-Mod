@@ -58,6 +58,30 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         return totalBrewAmount;
     }
 
+    public int getEffect1Amp() {
+        return effect1Amp;
+    }
+
+    public int getEffect2Amp() {
+        return effect2Amp;
+    }
+
+    public int getEffect3Amp() {
+        return effect3Amp;
+    }
+
+    public Effect getEffect1() {
+        return effect1;
+    }
+
+    public Effect getEffect2() {
+        return effect2;
+    }
+
+    public Effect getEffect3() {
+        return effect3;
+    }
+
     public HextechSynthesizerTile(TileEntityType<?> type) {
         super(type);
     }
@@ -171,6 +195,9 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                 doAction(ingredient);
             }
         }
+        else{
+            progress = 0;
+        }
         if(this.shimmerAmount >= 100){
             extractShimmer(container, result);
         }
@@ -253,7 +280,12 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                 }
                 progress = 0;
                 this.itemHandler.extractItem(2, 1, false);
-                totalBrewAmount += 100;
+                if((totalBrewAmount - 66) % 100 == 0 && totalBrewAmount != 0){
+                    totalBrewAmount += 34;
+                }
+                else{
+                    totalBrewAmount += 33;
+                }
             }
         }
     }
@@ -279,13 +311,7 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
             this.itemHandler.insertItem(3, chemBrew, false);
             totalBrewAmount -= 100;
             if(totalBrewAmount == 0) {
-                this.effect1 = null;
-                this.effect2 = null;
-                this.effect3 = null;
-                this.effect1Amp = 0;
-                this.effect2Amp = 0;
-                this.effect3Amp = 0;
-                ingredientAmount = 0;
+                this.disposeContents();
             }
         }
     }
@@ -339,6 +365,18 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         if(effect == Effects.HASTE) return "Haste";
         if(effect == Effects.STRENGTH) return "Strength";
         return "";
+    }
+
+    public void disposeContents(){
+        this.totalBrewAmount = 0;
+        this.shimmerAmount = 0;
+        this.effect1 = null;
+        this.effect2 = null;
+        this.effect3 = null;
+        this.effect1Amp = 0;
+        this.effect2Amp = 0;
+        this.effect3Amp = 0;
+        ingredientAmount = 0;
     }
 
     @Override

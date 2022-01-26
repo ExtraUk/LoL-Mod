@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "leaguecraft:block/hextech_synthesizer_side",
+    "north": "leaguecraft:block/hextech_synthesizer_side",
+    "south": "leaguecraft:block/hextech_synthesizer_side",
+    "east": "leaguecraft:block/hextech_synthesizer_side",
+    "west": "leaguecraft:block/hextech_synthesizer_side",
+    "up": "leaguecraft:block/hextech_synthesizer_top",
+    "down": "leaguecraft:block/hextech_synthesizer_top"
+  }
+}
