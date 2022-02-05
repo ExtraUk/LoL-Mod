@@ -84,6 +84,7 @@ public class ChemBrewItem extends SplashPotionItem {
         if(ef.equals("Speed")) return Potions.SWIFTNESS;
         if(ef.equals("Haste")) return new Potion("haste", new EffectInstance(Effects.HASTE));
         if(ef.equals("Strength")) return Potions.STRENGTH;
+        if(ef.equals("FireResistance")) return Potions.FIRE_RESISTANCE;
         return null;
     }
 

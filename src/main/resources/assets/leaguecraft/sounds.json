@@ -1,0 +1,40 @@
+{
+  "hextech_gauntlet_hit": {
+    "subtitle": "leaguecraft.hextech_gauntlet_hit",
+    "sounds": [
+      "leaguecraft:hextech_gauntlet_hit1",
+      "leaguecraft:hextech_gauntlet_hit2"
+    ]
+  },
+  "hextech_gauntlet_equip": {
+    "subtitle": "leaguecraft.hextech_gauntlet_equip",
+    "sounds": [
+      "leaguecraft:hextech_gauntlet_equip"
+    ]
+  },
+  "hextech_gauntlet_dash": {
+    "subtitle": "leaguecraft.hextech_gauntlet_dash",
+    "sounds": [
+      "leaguecraft:hextech_gauntlet_dash"
+    ]
+  },
+  "hextech_sword_hit": {
+    "subtitle": "leaguecraft.hextech_sword_hit",
+    "sounds": [
+      "leaguecraft:hextech_sword_hit1",
+      "leaguecraft:hextech_sword_hit2"
+    ]
+  },
+  "electrocuted_effect": {
+    "subtitle": "leaguecraft.electrocuted_effect",
+    "sounds": [
+      "leaguecraft:electrocuted_effect"
+    ]
+  },
+  "chemtech_grenade": {
+    "subtitle": "leaguecraft.chemtech_grenade",
+    "sounds": [
+      "leaguecraft:chemtech_grenade"
+    ]
+  }
+}

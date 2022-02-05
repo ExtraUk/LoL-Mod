@@ -12,9 +12,11 @@ import com.extra.leaguecraft.item.ModItems;
 import com.extra.leaguecraft.network.ModNetwork;
 import com.extra.leaguecraft.network.ModPacketHandler;
 import com.extra.leaguecraft.recipes.TurboChemtankChestRecipe;
+import com.extra.leaguecraft.render.curio.CurioRenderers;
 import com.extra.leaguecraft.screen.HextechChargerScreen;
 import com.extra.leaguecraft.screen.HextechSynthesizerScreen;
 import com.extra.leaguecraft.tileentity.ModTileEntities;
+import com.extra.leaguecraft.util.ModSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
@@ -42,6 +44,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.theillusivec4.curios.api.SlotTypeMessage;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(LeagueCraft.MOD_ID)
@@ -68,6 +72,7 @@ public class LeagueCraft
         ModTileEntities.register(eventBus);
         ModContainers.register(eventBus);
         ModEntityTypes.register(eventBus);
+        ModSoundEvents.register(eventBus);
 
 
 
@@ -105,12 +110,13 @@ public class LeagueCraft
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRACKERN.get(), BrackernRenderer::new);
         ScreenManager.registerFactory(ModContainers.HEXTECH_CHARGER_CONTAINER.get(), HextechChargerScreen::new);
         ScreenManager.registerFactory(ModContainers.HEXTECH_SYNTHESIZER_CONTAINER.get(), HextechSynthesizerScreen::new);
+        CurioRenderers.setupCurioRenderers();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
-        // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.HANDS.getMessageBuilder().size(2).build());
     }
 
     private void processIMC(final InterModProcessEvent event)

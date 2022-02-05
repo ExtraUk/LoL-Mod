@@ -42,7 +42,6 @@ public class HextechSynthesizerScreen extends ContainerScreen<HextechSynthesizer
         this.blit(matrixStack, i, j, 0, 0, this.xSize, this.ySize);
 
         HextechSynthesizerTile tile = ((HextechSynthesizerTile) container.getTileEntity());
-
         this.addButton(new SynthesizerContainerButton(i + 91, j + 16, 18, 52, new StringTextComponent(""),
                 new Button.IPressable() {
             @Override
@@ -56,6 +55,9 @@ public class HextechSynthesizerScreen extends ContainerScreen<HextechSynthesizer
                         SynthesizerContainerButton button = ((SynthesizerContainerButton) but);
                         if (button.getShimmer() > 0) {
                             drawString(matrixStack, font, "Shimmer: " + button.getShimmer(), mouseX, mouseY - 20, 0xFF00DC);
+                        }
+                        else if (button.getExplosiveAmount() > 0) {
+                            drawString(matrixStack, font, "Explosive Fluid: " + button.getExplosiveAmount(), mouseX, mouseY - 20, 0xCC4F22);
                         }
                         else if(button.getBrew() > 0){
                             drawString(matrixStack, font, "Total Brew Amount: " + button.getBrew(), mouseX, mouseY - 50, 0xCCFF00);
@@ -71,11 +73,12 @@ public class HextechSynthesizerScreen extends ContainerScreen<HextechSynthesizer
                         }
                     }
                 },
-                tile.getShimmerAmount(), tile.getTotalBrewAmount(), tile.getEffect1(), tile.getEffect2(), tile.getEffect3(),
+                tile.getShimmerAmount(), tile.getExplosiveFluidAmount(), tile.getTotalBrewAmount(), tile.getEffect1(), tile.getEffect2(), tile.getEffect3(),
                 tile.getEffect1Amp(), tile.getEffect2Amp(), tile.getEffect3Amp()));
 
         int shimAmount = container.getShimmerAmount();
         int brewAmount = container.getBrewAmount();
+        int explosiveAmount = container.getExplosiveFluidAmount();
         int progress = container.getProgress();
         this.addButton(new CleanSynthesizerButton(i + 149, j + 7, 20, 20, new StringTextComponent(""), new Button.IPressable() {
             @Override
@@ -85,7 +88,8 @@ public class HextechSynthesizerScreen extends ContainerScreen<HextechSynthesizer
             }
         }));
 
-        this.blit(matrixStack, i + 60, j + 26, 208, 0, (int)(progress*0.15714), 15);
+        this.blit(matrixStack, i + 60, j + 26, 208, 241, (int)(progress*0.15714), 15);
+
         if(shimAmount > 0){
             if(shimAmount == 10){
                 this.jShift = 67 - 1;
@@ -101,10 +105,27 @@ public class HextechSynthesizerScreen extends ContainerScreen<HextechSynthesizer
             }
             this.blit(matrixStack, i + 92, j + jShift, 176, vOffset, 16, 49);
         }
+
         else if(brewAmount > 0){
             this.jShift = 67 - (brewAmount/20);
             this.vOffset = 50 - (brewAmount/20);
             this.blit(matrixStack, i + 92, j + jShift, 192, vOffset, 16, 49);
+        }
+
+        else if(explosiveAmount > 0){
+            if(explosiveAmount == 10){
+                this.jShift = 67 - 1;
+                this.vOffset = 50 - 1;
+            }
+            else if(explosiveAmount % 20 == 0){
+                this.jShift = 67 - (explosiveAmount/20);
+                this.vOffset = 50 - (explosiveAmount/20);
+            }
+            else{
+                this.jShift = 67 - ((explosiveAmount-10)/20);
+                this.vOffset = 50 - ((explosiveAmount-10)/20);
+            }
+            this.blit(matrixStack, i + 92, j + jShift, 208, vOffset, 16, 49);
         }
     }
 

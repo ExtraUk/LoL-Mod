@@ -126,4 +126,5 @@ public class HextechSynthesizerContainer extends Container {
     }
     public int getBrewAmount(){ return ((HextechSynthesizerTile) this.tileEntity).getTotalBrewAmount(); }
     public int getProgress(){ return ((HextechSynthesizerTile) this.tileEntity).getProgress(); }
+    public int getExplosiveFluidAmount(){ return ((HextechSynthesizerTile) this.tileEntity).getExplosiveFluidAmount(); }
 }

@@ -15,7 +15,7 @@ public class ModEntityTypes {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, LeagueCraft.MOD_ID);
 
     public static final RegistryObject<EntityType<BrackernEntity>> BRACKERN = ENTITY_TYPES.register("brackern",
-            () -> EntityType.Builder.create(BrackernEntity::new, EntityClassification.MONSTER).size(1f, 1f)
+            () -> EntityType.Builder.create(BrackernEntity::new, EntityClassification.MONSTER).size(1.0f, 1.5f)
                     .build(new ResourceLocation(LeagueCraft.MOD_ID, "brackern").toString()));
 
     public static void register(IEventBus eventBus){

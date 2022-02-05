@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " i ",
+        "ivi",
+        "iii"
+    ],
+    "key": {
+        "v": {
+            "item": "leaguecraft:vial"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:chemtech_grenade",
+        "count": 4
+    }
+}

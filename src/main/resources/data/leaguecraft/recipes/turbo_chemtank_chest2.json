@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "i i",
+        "LYL",
+        "iii"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "L": {
+            "item": "leaguecraft:vial"
+        },
+        "Y": {
+            "item": "minecraft:leather"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:turbo_chemtank_chest",
+        "count": 1
+    }
+}

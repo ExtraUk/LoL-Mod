@@ -52,7 +52,8 @@ public class HextechChargerTile extends TileEntity implements ITickableTileEntit
                     case 1:
                         return stack.getItem() == ModItems.HEXTECH_CRYSTAL.get() ||
                                stack.getItem() == ModItems.HEXTECH_SWORD.get() ||
-                               stack.getItem() == ModItems.HEXTECH_SWORD_BROKEN.get();
+                               stack.getItem() == ModItems.HEXTECH_SWORD_BROKEN.get() ||
+                               stack.getItem() == ModItems.HEXTECH_GAUNTLET.get();
                     default:
                         return false;
                 }

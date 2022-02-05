@@ -17,21 +17,6 @@ public class ModItems {
     public static final RegistryObject<Item> LEAGUE_ICON = ITEMS.register("league_icon",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot",
-            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
-
-    public static final RegistryObject<Item> BOLT = ITEMS.register("bolt",
-            () -> new Bolt(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
-
-    public static final RegistryObject<Item> SILVER_BOLT = ITEMS.register("silver_bolt",
-            () -> new SilverBolt(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
-
-    public static final RegistryObject<Item> MAGAZINE = ITEMS.register("magazine",
-            () -> new Magazine(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(64)));
-
-    public static final RegistryObject<Item> REPEATER = ITEMS.register("repeater",
-            () -> new Repeater(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(1024)));
-
     public static final RegistryObject<Item> VIAL = ITEMS.register("vial",
             () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
 
@@ -69,8 +54,37 @@ public class ModItems {
     public static final RegistryObject<Item> HEXTECH_SWORD_BROKEN = ITEMS.register("hextech_sword_broken",
             () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
 
+    public static final RegistryObject<Item> HEXTECH_GAUNTLET = ITEMS.register("hextech_gauntlet",
+            () -> new HextechGauntletItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(512)));
+
     public static final RegistryObject<Item> CHEM_BREW = ITEMS.register("chem_brew",
-            () -> new ChemBrewItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(10)));
+            () -> new ChemBrewItem(new Item.Properties().maxStackSize(10)));
+
+    public static final RegistryObject<Item> CHEMTECH_GRENADE = ITEMS.register("chemtech_grenade",
+            () -> new ChemTechGrenade(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(16)));
+
+    public static final RegistryObject<Item> SYNTHESIZER_RECIPE_BOOK = ITEMS.register("synthesizer_recipe_book",
+            () -> new SynthesizerRecipeBook(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxStackSize(1)));
+
+    public static final RegistryObject<Item> IRON_GAUNTLET = ITEMS.register("iron_gauntlet",
+            () -> new IronGauntletItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(512)));
+
+
+    public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot",
+            () -> new Item(new Item.Properties()/*.group(ModItemGroup.LEAGUECRAFT_GROUP)*/));
+
+    public static final RegistryObject<Item> BOLT = ITEMS.register("bolt",
+            () -> new Bolt(new Item.Properties()/*.group(ModItemGroup.LEAGUECRAFT_GROUP)*/));
+
+    public static final RegistryObject<Item> SILVER_BOLT = ITEMS.register("silver_bolt",
+            () -> new SilverBolt(new Item.Properties()/*.group(ModItemGroup.LEAGUECRAFT_GROUP)*/));
+
+    public static final RegistryObject<Item> MAGAZINE = ITEMS.register("magazine",
+            () -> new Magazine(new Item.Properties()/*.group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(64)*/));
+
+    public static final RegistryObject<Item> REPEATER = ITEMS.register("repeater",
+            () -> new Repeater(new Item.Properties()/*.group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(1024)*/));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

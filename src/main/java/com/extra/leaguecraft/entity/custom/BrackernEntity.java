@@ -38,7 +38,7 @@ public class BrackernEntity extends SpiderEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.3F));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1, false));
         this.goalSelector.addGoal(4, new BrackernEntity.AttackGoal(this));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));

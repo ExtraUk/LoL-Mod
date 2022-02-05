@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#i#",
+        "iGi",
+        "L L"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "G": {
+            "item": "minecraft:glass_pane"
+        },
+        "L": {
+            "item": "leaguecraft:vial"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:turbo_chemtank_helmet",
+        "count": 1
+    }
+}

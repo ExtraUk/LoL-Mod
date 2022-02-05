@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.extra.leaguecraft.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "leaguecraft.refmap.json",
+  "mixins": [
+
+  ],
+  "client": [
+    "render.PlayerRendererMixin"
+  ],
+  "minVersion": "0.8"
+}

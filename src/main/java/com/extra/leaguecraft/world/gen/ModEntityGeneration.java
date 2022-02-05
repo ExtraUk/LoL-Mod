@@ -15,7 +15,7 @@ import java.util.List;
 public class ModEntityGeneration {
 
     public static void onEntitySpawn(final BiomeLoadingEvent event){
-        addEntityToSpecificBiomes(event, ModEntityTypes.BRACKERN.get(), 20, 1, 3, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES);
+        addEntityToSpecificBiomes(event, ModEntityTypes.BRACKERN.get(), 10, 1, 2, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES);
     }
 
 

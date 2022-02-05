@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " / ",
+        "/T/",
+        "SSS"
+    ],
+    "key": {
+        "/": {
+            "item": "minecraft:stick"
+        },
+        "T": {
+            "item": "minecraft:tripwire_hook"
+        },
+        "S": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:repeater",
+        "count": 1
+    }
+}

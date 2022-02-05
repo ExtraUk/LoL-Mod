@@ -1,6 +1,7 @@
 package com.extra.leaguecraft.item.custom;
 
 import com.extra.leaguecraft.effect.ModEffects;
+import com.extra.leaguecraft.item.ModItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -11,6 +12,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Mod;
 
 public class ShimmerVial extends Item {
 
@@ -39,11 +41,24 @@ public class ShimmerVial extends Item {
             }
             entity.addPotionEffect(new EffectInstance(ModEffects.SHIMMER.get(), dur, amp+1));
         }
+        if(entity instanceof PlayerEntity){
+            ((PlayerEntity) entity).inventory.addItemStackToInventory(ModItems.VIAL.get().getDefaultInstance());
+        }
         return super.onItemUseFinish(stack, world, entity);
     }
 
     @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ENTITY_GENERIC_DRINK;
+    }
+
+    @Override
+    public boolean hasContainerItem(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public ItemStack getContainerItem(ItemStack itemStack) {
+        return ModItems.VIAL.get().getDefaultInstance();
     }
 }

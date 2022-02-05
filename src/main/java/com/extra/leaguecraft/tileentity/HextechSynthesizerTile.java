@@ -11,10 +11,7 @@ import net.minecraft.item.SplashPotionItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.Effects;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.Potions;
+import net.minecraft.potion.*;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -25,6 +22,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -35,6 +33,7 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
 
     private int progress = 0;
+
     private int shimmerAmount = 0;
 
     private int totalBrewAmount = 0;
@@ -46,12 +45,18 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
     private Effect effect3 = null;
     private int ingredientAmount = 0;
 
+    private int explosiveFluidAmount = 0;
+
     public int getProgress() {
         return progress;
     }
 
     public int getShimmerAmount() {
         return this.shimmerAmount;
+    }
+
+    public int getExplosiveFluidAmount() {
+        return explosiveFluidAmount;
     }
 
     public int getTotalBrewAmount() {
@@ -103,12 +108,19 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                     case 0:
                         return stack.getItem() == ModItems.HEXTECH_CRYSTAL.get();
                     case 1:
-                        return stack.getItem() == ModItems.VIAL.get() ||
-                               stack.getItem() == Items.GLASS_BOTTLE;
+                        return  stack.getItem() == ModItems.VIAL.get() ||
+                                stack.getItem() == ModItems.TURBO_CHEMTANK_CHEST.get() ||
+                                stack.getItem() == Items.GLASS_BOTTLE ||
+                                stack.getItem() == ModItems.CHEMTECH_GRENADE.get();
                     case 2:
-                        return (HextechSynthesizerTile.getEffect(stack) != null || stack.getItem() == ModBlocks.SHIMMER_FLOWER.get().asItem());
+                        return (HextechSynthesizerTile.getEffect(stack) != null ||
+                                stack.getItem() == ModBlocks.SHIMMER_FLOWER.get().asItem() ||
+                                stack.getItem() == Items.GUNPOWDER);
                     case 3:
-                        return stack.getItem() == ModItems.SHIMMER_VIAL.get() || stack.getItem() == ModItems.CHEM_BREW.get();
+                        return  stack.getItem() == ModItems.SHIMMER_VIAL.get() ||
+                                stack.getItem() == ModItems.TURBO_CHEMTANK_CHEST.get() ||
+                                stack.getItem() == ModItems.CHEM_BREW.get() ||
+                                stack.getItem() == ModItems.CHEMTECH_GRENADE.get();
                     default:
                         return false;
                 }
@@ -146,17 +158,19 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inv"));
+
         this.shimmerAmount = nbt.getInt("shimmer");
+
+        this.explosiveFluidAmount = nbt.getInt("explosiveFluid");
+
         this.totalBrewAmount = nbt.getInt("brew");
         this.effect1Amp = nbt.getInt("effect1Amp");
         this.effect2Amp = nbt.getInt("effect2Amp");
         this.effect3Amp = nbt.getInt("effect3Amp");
         this.ingredientAmount = nbt.getInt("ingAmount");
-
         String ef1 = nbt.contains("effect1") ? nbt.getString("effect1") : "";
         String ef2 = nbt.contains("effect2") ? nbt.getString("effect2") : "";
         String ef3 = nbt.contains("effect3") ? nbt.getString("effect3") : "";
-
         this.effect1 = stringToEffect(ef1);
         this.effect2 = stringToEffect(ef2);
         this.effect3 = stringToEffect(ef3);
@@ -166,6 +180,8 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
     public CompoundNBT write(CompoundNBT nbt) {
 
         nbt.putInt("shimmer", shimmerAmount);
+
+        nbt.putInt("explosiveFluid", explosiveFluidAmount);
 
         nbt.putInt("brew", totalBrewAmount);
         nbt.putInt("effect1Amp", effect1Amp);
@@ -204,19 +220,22 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         else if(this.totalBrewAmount >= 100){
             extractBrew(container, result);
         }
-        if(this.shimmerAmount >= 100 && container.getItem() == ModItems.VIAL.get() && result.getCount() < result.getMaxStackSize()){
-
+        else if(this.explosiveFluidAmount >= 100){
+            extractExplosiveFluid(container, result);
         }
     }
 
     public void doAction(ItemStack ingredient){
         if (ingredient.getItem() == ModBlocks.SHIMMER_FLOWER.get().asItem()) {
-            if(totalBrewAmount == 0) {
+            if(totalBrewAmount == 0 && explosiveFluidAmount == 0) {
                 makeShimmer(ingredient);
             }
         }
-        else if(getEffect(ingredient) != null && shimmerAmount == 0){
+        else if(getEffect(ingredient) != null && shimmerAmount == 0 && explosiveFluidAmount == 0){
             makeChemBrew(ingredient);
+        }
+        else if(ingredient.getItem() == Items.GUNPOWDER){
+            makeExplosiveFluid(ingredient);
         }
     }
 
@@ -231,6 +250,21 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                 progress = 0;
                 this.itemHandler.extractItem(2, 1, false);
                 this.shimmerAmount += 10;
+            }
+        }
+    }
+
+    public void makeExplosiveFluid(ItemStack ingredient){
+        if (explosiveFluidAmount < 1000) {
+            if (progress < 140) {
+                if (progress % 20 == 0) {
+                    this.itemHandler.getStackInSlot(0).setDamage(this.itemHandler.getStackInSlot(0).getDamage() + 1);
+                }
+                progress++;
+            } else {
+                progress = 0;
+                this.itemHandler.extractItem(2, 1, false);
+                this.explosiveFluidAmount += 10;
             }
         }
     }
@@ -255,14 +289,34 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                         if (effect == effect1 && effect1Amp < 2) {
                             effect1Amp++;
                             ingredientAmount++;
+
+                            if (effect2 == null) {
+                                effect2 = effect;
+                            }
+                            else if (effect3 == null) {
+                                effect3 = effect;
+                            }
                         }
                         if (effect == effect2 && effect2Amp < 2) {
                             effect2Amp++;
                             ingredientAmount++;
+
+                            if (effect1 == null) {
+                                effect1 = effect;
+                            }
+                            else if (effect3 == null) {
+                                effect3 = effect;
+                            }
                         }
                         if (effect == effect3 && effect3Amp < 2) {
                             effect3Amp++;
-                            ingredientAmount++;
+
+                            if (effect1 == null) {
+                                effect1 = effect;
+                            }
+                            else if (effect2 == null) {
+                                effect2 = effect;
+                            }
                         }
                     }
                     else if (effect1 == null) {
@@ -291,15 +345,47 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
     }
 
     public void extractShimmer(ItemStack container, ItemStack result){
-        if(container.getItem() == ModItems.VIAL.get() && result.getCount() < result.getMaxStackSize()){
+
+        if(container.getItem() == ModItems.VIAL.get() && (result.getItem() == ModItems.SHIMMER_VIAL.get() || result == ItemStack.EMPTY) && result.getCount() < result.getMaxStackSize()){
             this.itemHandler.extractItem(1, 1, false);
             this.itemHandler.insertItem(3, ModItems.SHIMMER_VIAL.get().getDefaultInstance(), false);
             shimmerAmount -= 100;
         }
+
+
+        if(container.getItem() == ModItems.TURBO_CHEMTANK_CHEST.get() && (result.getItem() == ModItems.TURBO_CHEMTANK_CHEST.get() || result == ItemStack.EMPTY) && result.getCount() < result.getMaxStackSize()){
+            int chemtankAmount = container.getOrCreateTag().getInt("shimmer_load")/20;
+            int toExtract = 0;
+            if(shimmerAmount + chemtankAmount >= 1000){
+                if(chemtankAmount == 1000) return;
+                toExtract = 1000 - chemtankAmount;
+            }
+            else{
+                toExtract = shimmerAmount;
+            }
+
+            ItemStack toReturn = new ItemStack(ModItems.TURBO_CHEMTANK_CHEST.get());
+            toReturn.setDamage(container.getDamage());
+            toReturn.getOrCreateTag().putInt("shimmer_load", container.getTag().getInt("shimmer_load") + toExtract*20);
+
+            shimmerAmount -= toExtract;
+            this.itemHandler.extractItem(1, 1, false);
+            this.itemHandler.insertItem(3, toReturn, false);
+        }
+    }
+
+    public void extractExplosiveFluid(ItemStack container, ItemStack result){
+        if(container.getItem() == ModItems.CHEMTECH_GRENADE.get() && (result.getItem() == ModItems.CHEMTECH_GRENADE.get() || result == ItemStack.EMPTY) && result.getCount() < result.getMaxStackSize()){
+            this.itemHandler.extractItem(1, 1, false);
+            ItemStack grenade = ModItems.CHEMTECH_GRENADE.get().getDefaultInstance();
+            grenade.getOrCreateTag().putBoolean("charged", true);
+            this.itemHandler.insertItem(3, grenade, false);
+            explosiveFluidAmount -= 100;
+        }
     }
 
     public void extractBrew(ItemStack container, ItemStack result){
-        if(container.getItem() == Items.GLASS_BOTTLE && result.getCount() < result.getMaxStackSize()){
+        if(container.getItem() == Items.GLASS_BOTTLE && (result.getItem() == ModItems.CHEM_BREW.get() || result == ItemStack.EMPTY) && result.getCount() < result.getMaxStackSize()){
             this.itemHandler.extractItem(1, 1, false);
             ItemStack chemBrew = ModItems.CHEM_BREW.get().getDefaultInstance();
             chemBrew.getOrCreateTag().putString("effect1", effectToString(this.effect1));
@@ -330,6 +416,7 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         if(stack.getItem() == Items.SUGAR) return Effects.SPEED;
         if(stack.getItem() == Items.IRON_PICKAXE) return Effects.HASTE;
         if(stack.getItem() == Items.BLAZE_POWDER) return Effects.STRENGTH;
+        if(stack.getItem() == Items.MAGMA_CREAM) return Effects.FIRE_RESISTANCE;
         return null;
     }
 
@@ -347,6 +434,7 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         if(effect.equals("Speed")) return Effects.SPEED;
         if(effect.equals("Haste")) return Effects.HASTE;
         if(effect.equals("Strength")) return Effects.STRENGTH;
+        if(effect.equals("FireResistance")) return Effects.FIRE_RESISTANCE;
         return null;
     }
 
@@ -364,6 +452,7 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         if(effect == Effects.SPEED) return "Speed";
         if(effect == Effects.HASTE) return "Haste";
         if(effect == Effects.STRENGTH) return "Strength";
+        if(effect == Effects.FIRE_RESISTANCE) return "FireResistance";
         return "";
     }
 
@@ -377,6 +466,7 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         this.effect2Amp = 0;
         this.effect3Amp = 0;
         ingredientAmount = 0;
+        this.explosiveFluidAmount = 0;
     }
 
     @Override

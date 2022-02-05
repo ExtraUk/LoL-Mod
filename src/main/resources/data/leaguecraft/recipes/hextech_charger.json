@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iLi",
+        "iDi",
+        "iii"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "L": {
+            "item": "leaguecraft:hextech_crystal"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:hextech_charger",
+        "count": 1
+    }
+}

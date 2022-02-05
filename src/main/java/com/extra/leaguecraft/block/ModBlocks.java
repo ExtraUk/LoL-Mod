@@ -7,6 +7,7 @@ import com.extra.leaguecraft.block.custom.ShimmerFlowerBlock;
 import com.extra.leaguecraft.effect.ModEffects;
 import com.extra.leaguecraft.item.ModItemGroup;
 import com.extra.leaguecraft.item.ModItems;
+import com.extra.leaguecraft.item.custom.HextechSynthesizerBlockItem;
 import com.extra.leaguecraft.tileentity.HextechSynthesizerTile;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -27,9 +28,9 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, LeagueCraft.MOD_ID);
 
-    public static final RegistryObject<Block> SILVER_ORE = registerBlock("silver_ore",
-            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
-            .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5f)));
+//    public static final RegistryObject<Block> SILVER_ORE = registerBlock("silver_ore",
+//            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
+//            .harvestLevel(2).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5f)));
 
     public static final RegistryObject<Block> SHIMMER_FLOWER = registerBlock("shimmer_flower",
             () -> new ShimmerFlowerBlock(Effects.REGENERATION, 4, AbstractBlock.Properties.from(Blocks.BROWN_MUSHROOM).setLightLevel(value -> 2)));
@@ -48,7 +49,12 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block){
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+        if(name.equals("hextech_synthesizer")){
+            ModItems.ITEMS.register(name, () -> new HextechSynthesizerBlockItem(block.get(), new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+        }
+        else {
+            ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+        }
     }
 
 

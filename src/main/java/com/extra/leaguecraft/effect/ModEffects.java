@@ -23,4 +23,7 @@ public class ModEffects{
 
     public static final RegistryObject<Potion> SHIMMER_POTION = POTIONS.register("shimmer",
             () -> new Potion(new EffectInstance(SHIMMER.get(), 0, 0)));
+
+    public static final RegistryObject<Effect> ELECTROCUTED = EFFECTS.register("electrocuted",
+            () -> new ElectrocutedEffect());
 }

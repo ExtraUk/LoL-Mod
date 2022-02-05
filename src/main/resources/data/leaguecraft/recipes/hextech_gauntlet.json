@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ggg",
+        "iLi",
+        "DDD"
+    ],
+    "key": {
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "L": {
+            "item": "leaguecraft:hextech_crystal"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:hextech_gauntlet",
+        "count": 1
+    }
+}

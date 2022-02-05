@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# #",
+        "i i"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:leather"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "leaguecraft:turbo_chemtank_boots",
+        "count": 1
+    }
+}

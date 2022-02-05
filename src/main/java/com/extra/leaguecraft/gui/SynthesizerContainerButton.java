@@ -18,6 +18,7 @@ public class SynthesizerContainerButton extends Button {
 
 
     int shimmerAmount = 0;
+    int explosiveAmount = 0;
     int brewAmount = 0;
     Effect effect1 = null;
     Effect effect2 = null;
@@ -29,6 +30,8 @@ public class SynthesizerContainerButton extends Button {
     public int getShimmer() {
         return shimmerAmount;
     }
+
+    public int getExplosiveAmount(){ return explosiveAmount; }
 
     public int getBrew() {
         return brewAmount;
@@ -59,11 +62,13 @@ public class SynthesizerContainerButton extends Button {
     }
 
     public SynthesizerContainerButton(int x, int y, int width, int height, ITextComponent title, IPressable pressedAction,
-                                      ITooltip iTooltip, int shimmerAmount, int brewAmount, Effect ef1, Effect ef2, Effect ef3, int amp1, int amp2, int amp3) {
+                                      ITooltip iTooltip, int shimmerAmount, int explosiveAmount, int brewAmount,
+                                      Effect ef1, Effect ef2, Effect ef3, int amp1, int amp2, int amp3) {
         super(x, y, width, height, title, pressedAction, iTooltip);
 
         this.shimmerAmount = shimmerAmount;
         this.brewAmount = brewAmount;
+        this.explosiveAmount = explosiveAmount;
         this.effect1 = ef1;
         this.effect2 = ef2;
         this.effect3 = ef3;
