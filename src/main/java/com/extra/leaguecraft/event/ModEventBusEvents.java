@@ -27,9 +27,4 @@ public class ModEventBusEvents {
         ModSpawnEggItem.initSpawnEggs();
     }
 
-    @SubscribeEvent
-    public static void gatherDataEvent(GatherDataEvent event){
-
-    }
-
 }

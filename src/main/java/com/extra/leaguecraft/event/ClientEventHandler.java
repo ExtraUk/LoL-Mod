@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.gui.GuiUtils;
 import net.minecraftforge.fml.common.Mod;
@@ -27,6 +28,7 @@ import org.lwjgl.opengl.GL15;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.util.ICuriosHelper;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -75,6 +77,7 @@ public class ClientEventHandler {
     public void renderHextechGauntletDashGUI(RenderGameOverlayEvent.Pre event, ClientPlayerEntity player){
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         ICuriosHelper helper = CuriosApi.getCuriosHelper();
+        if(helper.findEquippedCurio(ModItems.HEXTECH_GAUNTLET.get(), player).equals(Optional.empty())) return;
         LazyOptional<IItemHandlerModifiable> equippedCurios = helper.getEquippedCurios(player);
         final AtomicBoolean gauntletEquipped = new AtomicBoolean(false);
         final AtomicInteger cooldownRemaining = new AtomicInteger(0);

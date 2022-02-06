@@ -17,10 +17,6 @@ public class ShimmerFlowerBlock extends FlowerBlock {
         super(p_i49984_1_, p_i49984_2_, p_i49984_3_);
     }
 
-    @Override
-    public boolean ticksRandomly(BlockState p_149653_1_) {
-        return true;
-    }
 
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
@@ -28,7 +24,7 @@ public class ShimmerFlowerBlock extends FlowerBlock {
     }
 
 
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+   /* public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (random.nextInt(25) == 0) {
 
             while (true) {
@@ -52,6 +48,6 @@ public class ShimmerFlowerBlock extends FlowerBlock {
 
             }
         }
-    }
+    }*/
 
 }
