@@ -30,6 +30,12 @@ public final class ModPacketHandler {
                 ServerBoundSynthUpdatePacket::decode,
                 ServerBoundSynthUpdatePacket::handle);
 
+        INSTANCE.registerMessage(index++,
+                ClientBoundXpUpdatePacket.class,
+                ClientBoundXpUpdatePacket::encode,
+                ClientBoundXpUpdatePacket::decode,
+                ClientBoundXpUpdatePacket::handle);
+
         /*INSTANCE.messageBuilder(ServerBoundSynthUpdatePacket.class, index++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(ServerBoundSynthUpdatePacket::encode)
                 .decoder(ServerBoundSynthUpdatePacket::decode)

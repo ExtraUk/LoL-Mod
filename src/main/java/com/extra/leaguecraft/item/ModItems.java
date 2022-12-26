@@ -45,8 +45,12 @@ public class ModItems {
             () -> new ModSpawnEggItem(ModEntityTypes.BRACKERN, 0x9b59b6, 0x3498db,
                     new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
 
+    public static final RegistryObject<ModSpawnEggItem> BLITZCRANK_SPAWN_EGG = ITEMS.register("blitzcrank_spawn_egg",
+            () -> new ModSpawnEggItem(ModEntityTypes.BLITZCRANK, 0xed9d24, 0xe8c425,
+                    new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
     public static final RegistryObject<Item> HEXTECH_CRYSTAL = ITEMS.register("hextech_crystal",
-            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(2048)));
+            () -> new HextechCrystal(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(2048)));
 
     public static final RegistryObject<Item> HEXTECH_SWORD = ITEMS.register("hextech_sword",
             () -> new HextechSword());
@@ -84,6 +88,18 @@ public class ModItems {
 
     public static final RegistryObject<Item> REPEATER = ITEMS.register("repeater",
             () -> new Repeater(new Item.Properties()/*.group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(1024)*/));
+
+    public static final RegistryObject<Item> CHEMTECH_CANISTER = ITEMS.register("chemtech_canister",
+            () -> new ChemtechCanisterItem(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP).maxDamage(8192)));
+
+    public static final RegistryObject<Item> COPPER_INGOT = ITEMS.register("copper_ingot",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
+    public static final RegistryObject<Item> TIN_INGOT = ITEMS.register("tin_ingot",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
+
+    public static final RegistryObject<Item> BRONZE_INGOT = ITEMS.register("bronze_ingot",
+            () -> new Item(new Item.Properties().group(ModItemGroup.LEAGUECRAFT_GROUP)));
 
 
     public static void register(IEventBus eventBus){

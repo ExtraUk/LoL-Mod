@@ -10,10 +10,15 @@
   "item.leaguecraft.hextech_sword_broken": "Uncharged Hextech Sword",
   "item.leaguecraft.hextech_gauntlet": "Hextech Gauntlet",
   "item.leaguecraft.brackern_spawn_egg": "Brackern Spawn Egg",
+  "item.leaguecraft.blitzcrank_spawn_egg": "Blitzcrank Spawn Egg",
   "item.leaguecraft.chem_brew": "ChemBrew",
-  "item.leaguecraft.chemtech_grenade": "ChemTech Grenade",
+  "item.leaguecraft.chemtech_grenade": "Chemtech Grenade",
   "item.leaguecraft.synthesizer_recipe_book": "Synthesizer Recipe Book",
   "item.leaguecraft.iron_gauntlet": "Iron Gauntlet",
+  "item.leaguecraft.chemtech_canister": "Chemtech Canister",
+  "item.leaguecraft.copper_ingot": "Copper Ingot",
+  "item.leaguecraft.tin_ingot": "Tin Ingot",
+  "item.leaguecraft.bronze_ingot": "Bronze Ingot",
 
   "item.leaguecraft.silver_ingot": "Silver Ingot",
   "item.leaguecraft.bolt": "Bolt",
@@ -28,10 +33,15 @@
   "block.leaguecraft.hextech_charger": "Hextech Charger",
   "block.leaguecraft.hextech_synthesizer": "Hextech Synthesizer",
   "block.leaguecraft.silver_ore": "Silver Ore",
+  "block.leaguecraft.tin_ore": "Tin Ore",
+  "block.leaguecraft.copper_ore": "Copper Ore",
+  "block.leaguecraft.bronze_block": "Bronze Block",
 
   "entity.leaguecraft.brackern": "Brackern",
+  "entity.leaguecraft.blitzcrank": "Blitzcrank",
 
   "effect.leaguecraft.shimmer": "Shimmer",
+  "effect.leaguecraft.ultra_shimmer": "Ultra Shimmer",
   "effect.leaguecraft.electrocuted": "Electrocuted",
 
   "itemGroup.leaguecraftTab": "LeagueCraft",

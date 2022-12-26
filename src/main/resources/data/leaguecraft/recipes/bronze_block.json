@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "vvv",
+    "vvv",
+    "vvv"
+  ],
+  "key": {
+    "v": {
+      "item": "leaguecraft:bronze_ingot"
+    }
+  },
+  "result": {
+    "item": "leaguecraft:bronze_block",
+    "count": 1
+  }
+}

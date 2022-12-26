@@ -1,6 +1,7 @@
 package com.extra.leaguecraft.network.message;
 
 import com.extra.leaguecraft.item.ModItems;
+import com.extra.leaguecraft.screen.SynthesizerRecipeBookScreen;
 import com.extra.leaguecraft.util.ModSoundEvents;
 import net.java.games.input.Keyboard;
 import net.minecraft.client.Minecraft;
@@ -9,9 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import org.apache.logging.log4j.core.jmx.Server;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.util.ICuriosHelper;
 

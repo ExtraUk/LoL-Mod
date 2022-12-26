@@ -66,13 +66,11 @@ public class ClientEventHandler {
                 drawTexturedModalRect(event.getMatrixStack(), 0, 0, 0, 0, event.getWindow().getWidth(), event.getWindow().getHeight(), 0.1f);
             }
         }
-        else if(player.getActivePotionEffect(ModEffects.SHIMMER.get()) != null){
+        else if(player.getActivePotionEffect(ModEffects.SHIMMER.get()) != null || player.getActivePotionEffect(ModEffects.ULTRA_SHIMMER.get()) != null){
             Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation(LeagueCraft.MOD_ID, "textures/gui/shimmer_overlay.png"));
             drawTexturedModalRect(event.getMatrixStack(), 0, 0, 0, 0, event.getWindow().getWidth(), event.getWindow().getHeight(), 0.1f);
         }
     }
-
-
 
     public void renderHextechGauntletDashGUI(RenderGameOverlayEvent.Pre event, ClientPlayerEntity player){
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);

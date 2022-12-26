@@ -41,6 +41,18 @@ public class ModBlocks {
     public static final RegistryObject<Block> HEXTECH_SYNTHESIZER = registerBlock("hextech_synthesizer",
             () -> new HextechSynthesizerBlock(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(2f)));
 
+    public static final RegistryObject<Block> COPPER_ORE = registerBlock("copper_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
+                    .harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5f)));
+
+    public static final RegistryObject<Block> TIN_ORE = registerBlock("tin_ore",
+            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)
+                    .harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5f)));
+
+    public static final RegistryObject<Block> BRONZE_BLOCK = registerBlock("bronze_block",
+            () -> new Block(AbstractBlock.Properties.create(Material.IRON)
+            .harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5f)));
+
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

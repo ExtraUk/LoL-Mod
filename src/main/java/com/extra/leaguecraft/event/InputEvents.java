@@ -4,6 +4,8 @@ import com.extra.leaguecraft.LeagueCraft;
 import com.extra.leaguecraft.item.ModItems;
 import com.extra.leaguecraft.network.ModNetwork;
 import com.extra.leaguecraft.network.message.InputMessage;
+import com.extra.leaguecraft.screen.LevelUpScreen;
+import com.extra.leaguecraft.screen.SynthesizerRecipeBookScreen;
 import com.extra.leaguecraft.util.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
@@ -13,6 +15,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.util.LazyOptional;
@@ -50,6 +53,13 @@ public class InputEvents {
 
         if(mc.currentScreen == null && key == 1){
             gauntletDash(mc, key);
+        }
+
+        if(mc.currentScreen == null && KeyInit.levelUpMenuKey.isPressed()){
+            if(mc.world.isRemote) {
+                //Minecraft::displayGuiScreen(new LevelUpScreen(new StringTextComponent(""))
+                Minecraft.getInstance().displayGuiScreen(new LevelUpScreen(new StringTextComponent("")));
+            }
         }
     }
 

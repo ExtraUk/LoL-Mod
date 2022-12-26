@@ -18,6 +18,8 @@ public class ModSoundEvents {
     public static final RegistryObject<SoundEvent> HEXTECH_SWORD_HIT = registerSoundEvent("hextech_sword_hit");
     public static final RegistryObject<SoundEvent> ELECTROCUTED_EFFECT = registerSoundEvent("electrocuted_effect");
     public static final RegistryObject<SoundEvent> CHEMTECH_GRENADE = registerSoundEvent("chemtech_grenade");
+    public static final RegistryObject<SoundEvent> BLITZCRANK_HOOK_LAUNCH = registerSoundEvent("blitzcrank_hook_launch");
+    public static final RegistryObject<SoundEvent> BLITZCRANK_HOOK_HIT = registerSoundEvent("blitzcrank_hook_hit");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name){
         return SOUND_EVENT.register(name, () -> new SoundEvent(new ResourceLocation(LeagueCraft.MOD_ID, name)));

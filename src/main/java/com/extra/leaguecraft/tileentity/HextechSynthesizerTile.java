@@ -111,7 +111,8 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                         return  stack.getItem() == ModItems.VIAL.get() ||
                                 stack.getItem() == ModItems.TURBO_CHEMTANK_CHEST.get() ||
                                 stack.getItem() == Items.GLASS_BOTTLE ||
-                                stack.getItem() == ModItems.CHEMTECH_GRENADE.get();
+                                stack.getItem() == ModItems.CHEMTECH_GRENADE.get() ||
+                                stack.getItem() == ModItems.CHEMTECH_CANISTER.get();
                     case 2:
                         return (HextechSynthesizerTile.getEffect(stack) != null ||
                                 stack.getItem() == ModBlocks.SHIMMER_FLOWER.get().asItem() ||
@@ -120,7 +121,8 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
                         return  stack.getItem() == ModItems.SHIMMER_VIAL.get() ||
                                 stack.getItem() == ModItems.TURBO_CHEMTANK_CHEST.get() ||
                                 stack.getItem() == ModItems.CHEM_BREW.get() ||
-                                stack.getItem() == ModItems.CHEMTECH_GRENADE.get();
+                                stack.getItem() == ModItems.CHEMTECH_GRENADE.get() ||
+                                stack.getItem() == ModItems.CHEMTECH_CANISTER.get();
                     default:
                         return false;
                 }
@@ -222,6 +224,9 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
         }
         else if(this.explosiveFluidAmount >= 100){
             extractExplosiveFluid(container, result);
+        }
+        else if(this.shimmerAmount >= 1){
+            extractSingleShimmer(container, result);
         }
     }
 
@@ -371,6 +376,13 @@ public class HextechSynthesizerTile extends TileEntity implements ITickableTileE
             shimmerAmount -= toExtract;
             this.itemHandler.extractItem(1, 1, false);
             this.itemHandler.insertItem(3, toReturn, false);
+        }
+    }
+
+    public void extractSingleShimmer(ItemStack container, ItemStack result){
+        if(container.getItem() == ModItems.CHEMTECH_CANISTER.get() && container.getStack().getDamage() > 0){
+            container.getStack().setDamage(container.getStack().getDamage()-1);
+            shimmerAmount -= 1;
         }
     }
 

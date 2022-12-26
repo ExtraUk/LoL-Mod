@@ -2,6 +2,7 @@ package com.extra.leaguecraft.event;
 
 import com.extra.leaguecraft.LeagueCraft;
 import com.extra.leaguecraft.entity.ModEntityTypes;
+import com.extra.leaguecraft.entity.custom.BlitzcrankEntity;
 import com.extra.leaguecraft.entity.custom.BrackernEntity;
 import com.extra.leaguecraft.item.custom.ModSpawnEggItem;
 import net.minecraft.entity.EntityType;
@@ -20,6 +21,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypes.BRACKERN.get(), BrackernEntity.setCustomAttributes().create());
+        event.put(ModEntityTypes.BLITZCRANK.get(), BlitzcrankEntity.setCustomAttributes().create());
     }
 
     @SubscribeEvent

@@ -10,11 +10,14 @@ import java.awt.event.KeyEvent;
 public class KeyInit {
 
     public static KeyBinding activateKey;
+    public static KeyBinding levelUpMenuKey;
 
     public static void register(final FMLClientSetupEvent event){
         activateKey = create("activate_key", KeyEvent.VK_G);
+        levelUpMenuKey = create("level_up_menu_key", KeyEvent.VK_L);
 
         ClientRegistry.registerKeyBinding(activateKey);
+        ClientRegistry.registerKeyBinding(levelUpMenuKey);
     }
 
     private static KeyBinding create(String name, int key){

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "leaguecraft:copper_ingot"
+        },
+        {
+            "item": "leaguecraft:copper_ingot"
+        },
+        {
+            "item": "leaguecraft:copper_ingot"
+        },
+        {
+            "item": "leaguecraft:tin_ingot"
+        }
+    ],
+    "result": {
+        "item": "leaguecraft:bronze_ingot",
+        "count": 4
+    }
+}

@@ -36,5 +36,17 @@
     "sounds": [
       "leaguecraft:chemtech_grenade"
     ]
+  },
+  "blitzcrank_hook_hit": {
+  "subtitle": "leaguecraft.blitzcrank_hook_hit",
+  "sounds": [
+  "leaguecraft:blitzcrank_hook_hit"
+  ]
+  },
+  "blitzcrank_hook_launch": {
+    "subtitle": "leaguecraft.blitzcrank_hook_launch",
+    "sounds": [
+      "leaguecraft:blitzcrank_hook_launch"
+    ]
   }
 }

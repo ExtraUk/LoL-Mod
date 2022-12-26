@@ -4,6 +4,8 @@ import com.extra.leaguecraft.block.ModBlocks;
 import com.extra.leaguecraft.container.ModContainers;
 import com.extra.leaguecraft.effect.ModEffects;
 import com.extra.leaguecraft.entity.ModEntityTypes;
+import com.extra.leaguecraft.entity.render.BlitzcrankFistRenderer;
+import com.extra.leaguecraft.entity.render.BlitzcrankRenderer;
 import com.extra.leaguecraft.entity.render.BrackernRenderer;
 import com.extra.leaguecraft.event.ClientEventHandler;
 import com.extra.leaguecraft.event.EntityHurtHandler;
@@ -22,6 +24,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.loot.LootTable;
@@ -44,6 +48,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
@@ -74,7 +79,7 @@ public class LeagueCraft
         ModEntityTypes.register(eventBus);
         ModSoundEvents.register(eventBus);
 
-
+        GeckoLib.initialize();
 
         RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
@@ -108,6 +113,8 @@ public class LeagueCraft
         });
 
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRACKERN.get(), BrackernRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BLITZCRANK.get(), BlitzcrankRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BLITZCRANK_FIST.get(), BlitzcrankFistRenderer::new);
         ScreenManager.registerFactory(ModContainers.HEXTECH_CHARGER_CONTAINER.get(), HextechChargerScreen::new);
         ScreenManager.registerFactory(ModContainers.HEXTECH_SYNTHESIZER_CONTAINER.get(), HextechSynthesizerScreen::new);
         CurioRenderers.setupCurioRenderers();
@@ -117,6 +124,8 @@ public class LeagueCraft
     {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
                 () -> SlotTypePreset.HANDS.getMessageBuilder().size(2).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.BACK.getMessageBuilder().size(2).build());
     }
 
     private void processIMC(final InterModProcessEvent event)
